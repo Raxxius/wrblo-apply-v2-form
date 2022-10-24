@@ -28,13 +28,43 @@ const FormItem = (props) => {
     }
 
     function handleChange(event) {
+        console.log(event.target)
+    
         const newFormData = props.formData.map(form => {
             if (form.id === event.target.id) {
                 return {...form, formText: event.target.value}
             }
+            else if (form.listType === 'fieldset') {
+                const subFormData = form['list'].map(subform => {
+                    if (subform.id === event.target.id)
+                    return {...subform, formText: event.target.value}
+                    return subform
+                })
+                return {...form, list: subFormData}
+            }
             return form
         })
+        
+        console.log(newFormData)
         props.setFormData(newFormData)
+
+        /*props.formData.map(form => {
+            if (form.listType === 'fieldset') {
+                const subFormItems = form.list.map(subForm => {
+                    if (subForm.id === event.target.id) {
+                        return {...subForm, formText: event.target.value}
+                    }
+                    return subForm
+                })
+            }
+            else if (form.id === event.target.id) {
+                return {...form, formText: event.target.value}
+            }
+            return form
+        })
+                */
+
+
     }
         return (
         <div 
@@ -56,8 +86,7 @@ const FormItem = (props) => {
                 type={props.listType}
                 maxLength={props.maxCharacter}
                 onChange={handleChange}
-                value={props.formData[props.id]['formText']
-                }
+                value={props.value}
             >
             </input>
             <button className="help">
@@ -66,8 +95,6 @@ const FormItem = (props) => {
         </div>
         )
 }
-
-
 
 /* core form builder */
 const FormBuilder = (props) => {
@@ -85,22 +112,37 @@ const FormBuilder = (props) => {
     }
 
     const formItems = formData.map(form => {
-        const form2 = form.listType === 'fieldset' ? form.list : form
+
+        if (form.listType === 'fieldset') {
+
+            const subFormItems = form.list.map(subform => {
+                    return (
+                        <FormItem 
+                            key={subform.id}
+                            {...subform}
+                            formData={formData}
+                            setFormData={setFormData}
+                            value={subform.formText}
+                        />
+                    )
+                }) 
             return (
-                form.listType !== 'fieldset' ? 
-                    <FormItem 
-                        key={form2.id}
-                        {...form2}
-                        formData={formData}
-                        setFormData={setFormData}
-                    />
-                :
-                    <fieldset key={form.id}>
-                        <legend>{form.legend}</legend>
-                        <FormBuilder data={form2}/>
-                    </fieldset>
-            )
-    })
+                <fieldset key={form.id}>
+                    <legend>{form.legend}</legend>
+                        {subFormItems}
+                </fieldset>
+            )}
+        else {
+            return (
+                <FormItem 
+                    key={form.id}
+                    {...form}
+                    formData={formData}
+                    setFormData={setFormData}
+                    value={form.formText}
+                />
+            )}
+        })
 
     return (
         <div 

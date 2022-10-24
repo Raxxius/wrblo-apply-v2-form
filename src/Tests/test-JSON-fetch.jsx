@@ -19,13 +19,19 @@ const TEST_JSON = {
             listType: 'fieldset',
             legend: 'legend',
             list: [{
-                id: '0',
+                id: '3',
                 listType: 'text',
                 formTitle: 'secondary list',
                 formText: 'secondary list',
                 maxCharacter: 50,
+            },
+            {
+                id: '4',
+                listType: 'text',
+                formTitle: 'secondary list 2',
+                formText: 'secondary list 2',
+                maxCharacter: 50,
             }]
-
         }
     ]
 }
