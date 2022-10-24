@@ -5,13 +5,23 @@ import { useState } from 'react';
  * 
  * expected data input from JSON
  * 
- * array of:
+ * array of list item:
  * 
  * {
- * "listType": 'STR',
- * "formTitle": '{title of form}'
- * "formText": '{User input text}'
- * "maxCharacter": '{max number of characters in the input}
+ * id: 'str'
+ * listType: 'str',
+ * formTitle: '{title of form}'
+ * formText: '{User input text}'
+ * maxCharacter: '{max number of characters in the input}
+ * }
+ * 
+ * or fieldset based sublist
+ * 
+ * {
+ * id: 'str',
+ * listType: 'fieldset',
+ * legend: 'legend',
+ * list: '[array of list item]
  * }
  * 
  */
@@ -28,8 +38,6 @@ const FormItem = (props) => {
     }
 
     function handleChange(event) {
-        console.log(event.target)
-    
         const newFormData = props.formData.map(form => {
             if (form.id === event.target.id) {
                 return {...form, formText: event.target.value}
@@ -44,25 +52,7 @@ const FormItem = (props) => {
             }
             return form
         })
-        
-        console.log(newFormData)
         props.setFormData(newFormData)
-
-        /*props.formData.map(form => {
-            if (form.listType === 'fieldset') {
-                const subFormItems = form.list.map(subForm => {
-                    if (subForm.id === event.target.id) {
-                        return {...subForm, formText: event.target.value}
-                    }
-                    return subForm
-                })
-            }
-            else if (form.id === event.target.id) {
-                return {...form, formText: event.target.value}
-            }
-            return form
-        })
-                */
 
 
     }
