@@ -36,36 +36,37 @@ const FormItem = (props) => {
         })
         props.setFormData(newFormData)
     }
-
-    return (
-    <div 
-        className='form_item'
-        style={style}
-    >
-        <label 
-            className='form'
-            id={props.id}
-            style={{
-                width: '150px',
-                textAlign: 'left',
-            }}
+        return (
+        <div 
+            className='form_item'
+            style={style}
         >
-            {props.formTitle}
-        </label>
-        <input
-            id={props.id}
-            type={props.listtype}
-            maxLength={props.maxCharacter}
-            onChange={handleChange}
-            value={props.formData[props.id]['formText']}
-        >
-        </input>
-        <button className="help">
-            ?
-        </button>
-    </div>
-    )
+            <label 
+                className='form'
+                id={props.id}
+                style={{
+                    width: '150px',
+                    textAlign: 'left',
+                }}
+            >
+                {props.formTitle}
+            </label>
+            <input
+                id={props.id}
+                type={props.listType}
+                maxLength={props.maxCharacter}
+                onChange={handleChange}
+                value={props.formData[props.id]['formText']
+                }
+            >
+            </input>
+            <button className="help">
+                ?
+            </button>
+        </div>
+        )
 }
+
 
 
 /* core form builder */
@@ -84,14 +85,21 @@ const FormBuilder = (props) => {
     }
 
     const formItems = formData.map(form => {
-        return (
-            <FormItem 
-                key={form.id}
-                {...form}
-                formData={formData}
-                setFormData={setFormData}
-            />
-        )
+        const form2 = form.listType === 'fieldset' ? form.list : form
+            return (
+                form.listType !== 'fieldset' ? 
+                    <FormItem 
+                        key={form2.id}
+                        {...form2}
+                        formData={formData}
+                        setFormData={setFormData}
+                    />
+                :
+                    <fieldset key={form.id}>
+                        <legend>{form.legend}</legend>
+                        <FormBuilder data={form2}/>
+                    </fieldset>
+            )
     })
 
     return (
@@ -100,7 +108,6 @@ const FormBuilder = (props) => {
             style={style}
         >
             {formItems}
-        <button className='submit'>Submit</button>
         </div>
     )
 

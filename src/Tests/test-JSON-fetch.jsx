@@ -1,19 +1,32 @@
 const TEST_JSON = {
     formList: [
         {    
-            id: '1',
-            listtype: 'text',
+            id: '0',
+            listType: 'text',
             formTitle: 'name',
-            formText: '',
+            formText: 'Keith',
+            maxCharacter: 50,
+        },
+        {
+            id: '1',
+            listType: 'email',
+            formTitle: 'email address',
+            formText: 'Raxxman@gmail.com',
             maxCharacter: 50,
         },
         {
             id: '2',
-            listtype: 'email',
-            formTitle: 'email address',
-            formText: '',
-            maxCharacter: 50,
-        },
+            listType: 'fieldset',
+            legend: 'legend',
+            list: [{
+                id: '0',
+                listType: 'text',
+                formTitle: 'secondary list',
+                formText: 'secondary list',
+                maxCharacter: 50,
+            }]
+
+        }
     ]
 }
 
