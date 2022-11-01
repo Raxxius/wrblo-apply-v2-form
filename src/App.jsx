@@ -1,12 +1,14 @@
 import './App.css';
-
-import FormDesigner from './Components/FormDesigner';
+import FormBuilder from './Components/FormBuilder';
+import Example from './Tests/Example';
 
 function App() {
+  const data = (Example['formList'])
   return (
     <div className='App'>
-      <FormDesigner />
-      <button className='submit'>Submit</button>
+      <FormBuilder
+        data={data}
+      />
     </div>
   );
 }

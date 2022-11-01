@@ -65,7 +65,7 @@ const FormItem = (props) => {
                 className='form'
                 id={props.id}
                 style={{
-                    width: '150px',
+                    width: '40vw',
                     textAlign: 'left',
                 }}
             >
@@ -77,6 +77,10 @@ const FormItem = (props) => {
                 maxLength={props.maxCharacter}
                 onChange={handleChange}
                 value={props.value}
+                style={{
+                    width: '40vw',
+                    textAlign: 'left',
+                }}
             >
             </input>
             <button className="help">
@@ -99,6 +103,17 @@ const FormBuilder = (props) => {
         justifyContent: "center",
         alignItems: "center",
         padding: "20px"
+    }
+
+    function handleSubmit() {
+        alert("submitting application form")
+        const submitData = JSON.stringify(formData);
+        const blob = new Blob([submitData], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.download = "form-data.json";
+        link.href = url;
+        link.click();
     }
 
     const formItems = formData.map(form => {
@@ -139,6 +154,18 @@ const FormBuilder = (props) => {
             className="form-box"
             style={style}
         >
+            <div
+                className="submit-button"
+                style={{
+                    cursor: 'pointer',
+                    border: '2px solid black',
+                    padding: '15px',
+                    borderRadius: '15px'
+                }}
+                onClick={handleSubmit}
+            >
+                <p>Submit the WRBLO Preliminary Application</p>
+            </div>
             {formItems}
         </div>
     )
