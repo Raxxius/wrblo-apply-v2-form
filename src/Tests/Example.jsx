@@ -17,6 +17,7 @@ const WRBLO_PRELIMINARY = {
                 formTitle: 'Contact details',
                 formText: '',
                 maxCharacter: 150,
+                helpButton: `The first and usually the easiest part of the application asks for the applicant group's name, address, and telephone/fax numbers. However, WRBLO will expect the most senior person or chairperson to be the designated contact for signing contracts etc if you are successful be sure to have someone who can sign the application on the organisation’s behalf listed as the key contact.`
             },
             {
                 id: '3',
@@ -173,8 +174,12 @@ const WRBLO_PRELIMINARY = {
                 formText: '',
                 maxCharacter: 150,
             }]
-            
         },
+        {
+            id: '26',
+            listType: 'file',
+            formTitle: 'Additional data'
+        }
     ]
 }
 

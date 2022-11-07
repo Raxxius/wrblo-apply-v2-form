@@ -37,6 +37,16 @@ const FormItem = (props) => {
         flexDirection: "row", 
     }
 
+    let helpButton = ''
+
+    if (props.helpButton != undefined)  {
+        helpButton = <button className="help" onClick={handleHelpButton}>?</button>
+    }
+
+    function handleHelpButton() {
+        alert(props.helpButton)
+    }
+
     function handleChange(event) {
         const newFormData = props.formData.map(form => {
             if (form.id === event.target.id) {
@@ -53,7 +63,6 @@ const FormItem = (props) => {
             return form
         })
         props.setFormData(newFormData)
-
 
     }
         return (
@@ -80,12 +89,11 @@ const FormItem = (props) => {
                 style={{
                     width: '40vw',
                     textAlign: 'left',
+                    padding: '5px',
                 }}
             >
             </input>
-            <button className="help">
-                ?
-            </button>
+            {helpButton}
         </div>
         )
 }
@@ -105,7 +113,8 @@ const FormBuilder = (props) => {
         padding: "20px"
     }
 
-    function handleSubmit() {
+    /* Handle Save */
+    function handleSave() {
         alert("submitting application form")
         const submitData = JSON.stringify(formData);
         const blob = new Blob([submitData], { type: "text/plain" });
@@ -114,6 +123,14 @@ const FormBuilder = (props) => {
         link.download = "form-data.json";
         link.href = url;
         link.click();
+    }
+
+    function handleLoad(e) {
+        console.log(e.target)
+    }
+
+    function handleSubmit() {
+        
     }
 
     const formItems = formData.map(form => {
@@ -167,6 +184,46 @@ const FormBuilder = (props) => {
                 <p>Submit the WRBLO Preliminary Application</p>
             </div>
             {formItems}
+            
+            <div
+                className='save-load-button'
+                style={{
+                    display: 'flex'
+                }}
+            >
+                <div
+                    className='save-button'
+                    style={{
+                        cursor: 'pointer',
+                        border: '2px solid black',
+                        padding: '5px',
+                        borderRadius: '5px',
+                        marginTop: '15px',
+                    }}
+                    onClick={handleSave}
+                >
+                    Save Form
+                </div>
+                <div
+                    className='save-button'
+                    style={{
+                        cursor: 'pointer',
+                        border: '2px solid black',
+                        padding: '5px',
+                        borderRadius: '5px',
+                        marginTop: '15px',
+                        marginLeft: '15px'
+                    }}
+                >
+                    <input
+                        type="file"
+                        name="load"
+                        onChange={handleLoad}
+                    />
+
+                </div>
+            </div>
+
         </div>
     )
 
