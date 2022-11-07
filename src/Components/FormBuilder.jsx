@@ -115,18 +115,27 @@ const FormBuilder = (props) => {
 
     /* Handle Save */
     function handleSave() {
-        alert("submitting application form")
+        alert("saving application form")
         const submitData = JSON.stringify(formData);
         const blob = new Blob([submitData], { type: "text/plain" });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
-        link.download = "form-data.json";
+        link.download = "form-data.txt";
         link.href = url;
         link.click();
     }
 
     function handleLoad(e) {
-        console.log(e.target)
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        reader.readAsText(file);
+        console.log(e.target.files[0]);
+        reader.onload = function() {
+            let newForm = JSON.parse(reader.result);
+            console.log(newForm)
+            setFormData(newForm);
+          };
+        
     }
 
     function handleSubmit() {
