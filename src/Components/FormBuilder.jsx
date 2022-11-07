@@ -130,7 +130,23 @@ const FormBuilder = (props) => {
     }
 
     function handleSubmit() {
+
+        alert("Please remember to attach any additional documents to the email before sending")
+        const emailBody = formData.map(form => {
+            if (form.listType !== 'fieldset') {
+                return(`%0A%0A ${form.formTitle}: %0A%0A ${form.formText}`)
+            }
+            else {
+                const subForm = form['list'].map(subform => {
+                    return(`%0A%0A ${subform.formTitle}: %0A%0A ${subform.formText}`)
+                })
+                return(`%0A%0A ${form.legend} ${subForm}`)
+            }
+        })
         
+        const mailto = 
+            `mailto:mail@gmail.com?subject=WRBLO Preliminary submit form&body=${emailBody}`;
+        window.location.href = mailto;
     }
 
     const formItems = formData.map(form => {
