@@ -71,6 +71,7 @@ const FormItem = (props) => {
           width: "40vw",
           textAlign: "left",
           padding: "5px",
+          height: "150px",
         }}
       ></textarea>
     );
