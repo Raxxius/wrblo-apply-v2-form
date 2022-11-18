@@ -204,11 +204,6 @@ const WRBLO_PRELIMINARY = {
                 maxCharacter: 150,
             }]
         },
-        {
-            id: '26',
-            listType: 'file',
-            formTitle: 'Additional data'
-        }
     ]
 }
 
