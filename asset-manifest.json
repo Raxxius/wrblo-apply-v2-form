@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/wrblo-apply-v2-form/static/css/main.ca1d6ec1.css",
+    "main.js": "/wrblo-apply-v2-form/static/js/main.875f6b2b.js",
+    "static/js/787.e4f4b499.chunk.js": "/wrblo-apply-v2-form/static/js/787.e4f4b499.chunk.js",
+    "index.html": "/wrblo-apply-v2-form/index.html",
+    "main.ca1d6ec1.css.map": "/wrblo-apply-v2-form/static/css/main.ca1d6ec1.css.map",
+    "main.875f6b2b.js.map": "/wrblo-apply-v2-form/static/js/main.875f6b2b.js.map",
+    "787.e4f4b499.chunk.js.map": "/wrblo-apply-v2-form/static/js/787.e4f4b499.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ca1d6ec1.css",
+    "static/js/main.875f6b2b.js"
+  ]
+}
