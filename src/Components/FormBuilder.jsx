@@ -10,7 +10,7 @@ import { useState } from "react";
  * {
  * id: 'str'
  * listType: 'str',
- * formTitle: '{title of form}'
+ * formtitle: '{title of form}'
  * formText: '{User input text}'
  * maxCharacter: '{max number of characters in the input}
  * }
@@ -29,10 +29,6 @@ import { useState } from "react";
 /* indivdual form component */
 
 const FormItem = (props) => {
-  const style = {
-    display: "flex",
-    flexDirection: "row",
-  };
 
   let helpButton = "";
 
@@ -52,7 +48,7 @@ const FormItem = (props) => {
       onChange={handleChange}
       value={props.value}
       style={{
-        width: "40vw",
+        width: "550px",
         textAlign: "left",
         padding: "5px",
       }}
@@ -68,7 +64,7 @@ const FormItem = (props) => {
         onChange={handleChange}
         value={props.value}
         style={{
-          width: "40vw",
+          width: "550px",
           textAlign: "left",
           padding: "5px",
           height: "150px",
@@ -103,18 +99,18 @@ const FormItem = (props) => {
       style={{
         display: "flex",
         flexDirection: "row",
-        width: "80vw",
+        width: "1000px",
       }}
     >
       <label
         className="form"
         htmlFor={props.id}
         style={{
-          width: "35vw",
+          width: "400px",
           textAlign: "left",
         }}
       >
-        {props.formTitle}
+        {props.formtitle}
       </label>
       {input}
       {helpButton}
@@ -168,10 +164,10 @@ const FormBuilder = (props) => {
     );
     const emailBody = formData.map((form) => {
       if (form.listType !== "fieldset") {
-        return `%0A%0A ${form.formTitle}: %0A%0A ${form.formText}`;
+        return `%0A%0A ${form.formtitle}: %0A%0A ${form.formText}`;
       } else {
         const subForm = form["list"].map((subform) => {
-          return `%0A%0A ${subform.formTitle}: %0A%0A ${subform.formText}`;
+          return `%0A%0A ${subform.formtitle}: %0A%0A ${subform.formText}`;
         });
         return `%0A%0A ${form.legend} ${subForm}`;
       }
@@ -213,6 +209,7 @@ const FormBuilder = (props) => {
     }
   });
 
+  /* Core return render **/
   return (
     <div className="form-box" style={style}>
       <div
@@ -262,7 +259,7 @@ const FormBuilder = (props) => {
           <input
             type="file"
             name="load"
-            formTitle="Load from Text file"
+            formtitle="Load from Text file"
             onChange={handleLoad}
           />
         </div>
