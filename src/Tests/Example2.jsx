@@ -1,5 +1,5 @@
 const WRBLO_PRELIMINARY = {
-  formList: [
+  formList1: [
     {
       id: "0",
       listType: "fieldset",
@@ -100,7 +100,8 @@ const WRBLO_PRELIMINARY = {
           maxCharacter: 150,
         },
       ],
-    },
+    }, ],
+    formList2: [
     {
       id: "10",
       listType: "fieldset",
@@ -123,7 +124,8 @@ const WRBLO_PRELIMINARY = {
           maxCharacter: 1000,
         },
       ],
-    },
+    }, ],
+    formList3: [
     {
       id: "13",
       listType: "textarea",
