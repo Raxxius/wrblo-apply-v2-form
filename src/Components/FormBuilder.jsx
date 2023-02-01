@@ -122,6 +122,11 @@ const FormItem = (props) => {
 const FormBuilder = (props) => {
   /* State variables */
   const [formData, setFormData] = useState(props.data);
+  const pages = Object.keys(formData).length
+
+  for (i = 0; i <= pages; i++) {
+      
+  }
 
   /* Style variables */
   const style = {
@@ -152,7 +157,6 @@ const FormBuilder = (props) => {
     console.log(e.target.files[0]);
     reader.onload = function () {
       let newForm = JSON.parse(reader.result);
-      console.log(newForm);
       setFormData(newForm);
     };
   }
@@ -223,6 +227,10 @@ const FormBuilder = (props) => {
         onClick={handleSubmit}
       >
         <p>Submit the WRBLO Preliminary Application</p>
+      </div>
+      <div className="Page Navigation">
+        <button className="previous-page" onClick={() => props.handlePreviousPage()}>Previous Page</button>
+        <button className="next-page" onClick={() => props.handleNextPage()}>Next Page</button>
       </div>
       {formItems}
 
